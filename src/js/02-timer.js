@@ -30,11 +30,13 @@ const options = {
         btnStartEl.removeAttribute("disabled");
     }
 
-    btnStartEl.addEventListener('click', onBtnStartClick, { once: true });
+    btnStartEl.addEventListener('click', onBtnStartClick, { once: true }); 
     },
 };
 
 function onBtnStartClick (e) {
+  inputEl.setAttribute('disabled', 'disabled');
+  btnStartEl.setAttribute("disabled", "disabled");
   timeId = setInterval(convertMs, 1000);
 };
 
@@ -67,6 +69,8 @@ function convertMs(ms) {
 
   if (days <= 0 && hours <= 0 && minutes <= 0 && seconds <= 0) {
     clearInterval(timeId);
+    inputEl.removeAttribute('disabled');
+    btnStartEl.removeAttribute("disabled");
   }
   
   return { days, hours, minutes, seconds };
